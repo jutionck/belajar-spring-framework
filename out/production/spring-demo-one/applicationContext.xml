@@ -11,14 +11,23 @@
         <!-- Define your bean here -->
 
         <!-- Define the dependency -->
-        <bean id="myFortune" class="com.enigmacamp.mandiri.FortuneServiceImpl">
+        <bean id="myFortuneService" class="com.enigmacamp.mandiri.FortuneServiceImpl">
 
         </bean>
 
         <bean id="myCoach" class="com.enigmacamp.mandiri.BaseBallCoach">
-                <!-- Set up constructor injection -->
-                <constructor-arg ref="myFortune" />
+                <!-- Set up constructor injection injection -->
+                <constructor-arg ref="myFortuneService" />
         </bean>
+
+        <bean id="myCricketCoach" class="com.enigmacamp.mandiri.CricketCoach">
+                <!-- Set up setter injection injection -->
+                <property name="fortuneService" ref="myFortuneService" />
+
+                <!-- inject literal values -->
+                <property name="emailAddress" value="jutionck@enigmacamp.com" />
+                <property name="team" value="Enigmacamp Team" />
+         </bean>
 
 </beans>
 
