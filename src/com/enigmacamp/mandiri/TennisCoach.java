@@ -7,23 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class TennisCoach implements Coach {
 
+    //field injection
+    @Autowired
     private FortuneService fortuneService;
 
     public TennisCoach() {
         System.out.println("Print out from default constructor: TennisCoach");
-    }
-
-//    @Autowired
-//    public void setFortuneService(FortuneService fortuneService) {
-//        System.out.println("Print out from setter: setFortuneService");
-//        this.fortuneService = fortuneService;
-//    }
-
-    //costume method, ANY method
-    @Autowired
-    public void doSomeCrazyStuff(FortuneService fortuneService) {
-        System.out.println(">> TennisCoach: inside doSomeCrazyStuff() method");
-        this.fortuneService = fortuneService;
     }
 
     @Override
