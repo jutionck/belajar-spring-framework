@@ -8,10 +8,13 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+        <!-- Load the properties file a sport.properties -->
+        <context:property-placeholder location="sport.properties" />
+
         <!-- Define your bean here -->
 
         <!-- Define the dependency -->
-        <bean id="myFortuneService" class="com.enigmacamp.mandiri.FortuneServiceImpl">
+        <bean id="myFortuneService" class="com.enigmacamp.mandiri.RandomFortuneService">
 
         </bean>
 
@@ -24,9 +27,9 @@
                 <!-- Set up setter injection injection -->
                 <property name="fortuneService" ref="myFortuneService" />
 
-                <!-- inject literal values -->
-                <property name="emailAddress" value="jutionck@enigmacamp.com" />
-                <property name="team" value="Enigmacamp Team" />
+                <!-- inject literal values from sport.properties-->
+                <property name="emailAddress" value="${foo.email}" />
+                <property name="team" value="${foo.team}" />
          </bean>
 
 </beans>
