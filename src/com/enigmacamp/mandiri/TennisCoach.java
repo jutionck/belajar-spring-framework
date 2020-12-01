@@ -1,6 +1,7 @@
 package com.enigmacamp.mandiri;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 //default component is, name the class
@@ -9,6 +10,7 @@ public class TennisCoach implements Coach {
 
     //field injection
     @Autowired
+    @Qualifier("randomFortuneService")
     private FortuneService fortuneService;
 
     public TennisCoach() {
