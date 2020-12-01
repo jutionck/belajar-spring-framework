@@ -11,12 +11,16 @@
         <!-- Define your bean here -->
 
         <!-- Define the dependency -->
-        <bean id="myFortuneService" class="com.enigmacamp.mandiri.RandomFortuneService">
+        <bean id="myFortuneService" class="com.enigmacamp.mandiri.FortuneServiceImpl">
 
         </bean>
 
         <!-- add scope for different memory address -->
-        <bean id="myCoach" class="com.enigmacamp.mandiri.BaseBallCoach" scope="prototype">
+        <bean
+                id="myCoach"
+                class="com.enigmacamp.mandiri.TrackCoach"
+                init-method="doMyStartupStuff"
+                destroy-method="doMyCleanStuffYoYo">
                 <!-- Set up constructor injection injection -->
                 <constructor-arg ref="myFortuneService" />
         </bean>
