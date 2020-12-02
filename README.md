@@ -15,7 +15,7 @@ Step-By-Step
     ```
 4. Use a database :
     ```sql
-    USE spring_user_demo;
+    USE spring_demo_one;
     ```
 5. Create a table:
     ```sql
@@ -27,3 +27,8 @@ Step-By-Step
        PRIMARY KEY(id)
    );
     ```
+
+#### Custom ID
+1. You can define your own CUSTOM generation Strategy
+2. Create implementation of **org.hibernate.id.IdentifierGenerator**
+3. Override the method: **public Serializable (...)**
