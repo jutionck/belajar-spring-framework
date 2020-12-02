@@ -16,21 +16,25 @@ public class CreateStudent {
 
         try (factory) {
             Session session = factory.getCurrentSession();
-            //crate a student object
+            //create a student object
+            System.out.println("Creating a new student object...");
             Student newStudent = new Student(
-                    "Jution",
-                    "Kirana",
-                    "jution.kirana@gmail.com"
+                    "Destry",
+                    "Avisa",
+                    "destry.avisa@gmail.com"
             );
 
             //start transaction
             session.beginTransaction();
 
             //save the student
+            System.out.println("Saving the student....");
             session.save(newStudent);
 
             //commit the transaction
             session.getTransaction().commit();
+
+            System.out.println("Done!");
         }
     }
 }
