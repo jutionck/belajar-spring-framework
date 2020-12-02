@@ -1,9 +1,13 @@
 package com.enigmacamp.mandiri.app;
 
 import com.enigmacamp.mandiri.entity.Student;
+import com.enigmacamp.mandiri.utils.DateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.text.ParseException;
+import java.util.Date;
 
 public class CreateStudent {
 
@@ -14,14 +18,21 @@ public class CreateStudent {
                 .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 
+        Session session = factory.getCurrentSession();
+
         try (factory) {
-            Session session = factory.getCurrentSession();
-            //create a student object
+
+            //create a new student object
             System.out.println("Creating a new student object...");
+
+            String theDateOfBirthStr = "03/07/1995";
+            Date theDateOfBirth = DateUtil.parseDate(theDateOfBirthStr);
+
             Student newStudent = new Student(
                     "Destry",
-                    "Avisa",
-                    "destry.avisa@gmail.com"
+                    "Bedul",
+                    "destry.avisa@gmail.com",
+                    theDateOfBirth
             );
 
             //start transaction
@@ -35,6 +46,8 @@ public class CreateStudent {
             session.getTransaction().commit();
 
             System.out.println("Done!");
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 }
