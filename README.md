@@ -32,3 +32,10 @@ Step-By-Step
 1. You can define your own CUSTOM generation Strategy
 2. Create implementation of **org.hibernate.id.IdentifierGenerator**
 3. Override the method: **public Serializable (...)**
+
+
+#### Modify Student Table
+Add column `date_of_birth` and copy this script below
+```sql
+ALTER TABLE student ADD COLUMN date_of_birth date AFTER email
+```
