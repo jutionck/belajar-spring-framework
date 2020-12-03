@@ -30,7 +30,7 @@ public class Instructor {
 
     //Modify
     //Eager vc Lazy Loading
-    @OneToMany(fetch = FetchType.EAGER,
+    @OneToMany(fetch = FetchType.LAZY,
             mappedBy = "instructor", cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.DETACH
