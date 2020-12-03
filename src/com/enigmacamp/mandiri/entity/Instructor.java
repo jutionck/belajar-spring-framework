@@ -1,6 +1,8 @@
 package com.enigmacamp.mandiri.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "instructor")
@@ -26,8 +28,16 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
+    //Modify
+    @OneToMany(mappedBy = "instructor", cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.DETACH
+    })
+    private List<Course> courses;
+
     //constructor
-    public Instructor() {}
+    public Instructor() {
+    }
 
     public Instructor(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -75,5 +85,37 @@ public class Instructor {
 
     public void setInstructorDetail(InstructorDetail instructorDetail) {
         this.instructorDetail = instructorDetail;
+    }
+
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", instructorDetail=" + instructorDetail +
+                ", courses=" + courses +
+                '}';
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    //add convenience method for bi-directional relationship
+    public void add(Course tempCourse) {
+
+        if(courses == null) {
+            courses= new ArrayList<>();
+        }
+
+        courses.add(tempCourse);
+
+        tempCourse.setInstructor(this);
     }
 }
