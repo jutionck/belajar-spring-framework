@@ -1,4 +1,4 @@
-package com.enigmacamp.mandiri.app;
+package com.enigmacamp.mandiri.app.student;
 
 import com.enigmacamp.mandiri.entity.Student;
 import org.hibernate.Session;

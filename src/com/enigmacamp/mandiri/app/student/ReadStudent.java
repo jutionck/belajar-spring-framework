@@ -1,4 +1,4 @@
-package com.enigmacamp.mandiri.app;
+package com.enigmacamp.mandiri.app.student;
 
 import com.enigmacamp.mandiri.entity.Student;
 import com.enigmacamp.mandiri.utils.DateUtil;
@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import java.text.ParseException;
 import java.util.Date;
 
-public class CreateStudent {
+public class ReadStudent {
 
     public static void main(String[] args) {
 
@@ -18,20 +18,18 @@ public class CreateStudent {
                 .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 
-        Session session = factory.getCurrentSession();
-
         try (factory) {
-
-            //create a new student object
+            Session session = factory.getCurrentSession();
+            //create a student object
             System.out.println("Creating a new student object...");
 
-            String theDateOfBirthStr = "03/07/1995";
+            String theDateOfBirthStr = "05/02/1998";
             Date theDateOfBirth = DateUtil.parseDate(theDateOfBirthStr);
 
             Student newStudent = new Student(
-                    "Destry",
-                    "Bedul",
-                    "destry.avisa@gmail.com",
+                    "Dinda",
+                    "Aditiya",
+                    "dinda.aditiya@gmail.com",
                     theDateOfBirth
             );
 
@@ -44,6 +42,17 @@ public class CreateStudent {
 
             //commit the transaction
             session.getTransaction().commit();
+
+            //Read
+            System.out.println("Get Student by id: " + newStudent.getId());
+
+            //Get a new session
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            System.out.println("\nGetting student with ID: " + newStudent.getId());
+
+            Student getStudent = session.get(Student.class, newStudent.getId());
+            System.out.println("Get Complete: " + getStudent);
 
             System.out.println("Done!");
         } catch (ParseException e) {

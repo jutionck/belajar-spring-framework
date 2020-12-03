@@ -1,4 +1,4 @@
-package com.enigmacamp.mandiri.app;
+package com.enigmacamp.mandiri.app.course;
 
 import com.enigmacamp.mandiri.entity.Course;
 import com.enigmacamp.mandiri.entity.Instructor;
@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class CreateInstructorDemo {
+public class DeleteCourseDemo {
 
     public static void main(String[] args) {
 
@@ -22,30 +22,16 @@ public class CreateInstructorDemo {
 
             Session session = factory.getCurrentSession();
 
-            //Create object
-            Instructor tempInstructor =
-                    new Instructor(
-                            "Yussin",
-                            "R. Hidayat",
-                            "yussin.hidayat@enigmacamp.com"
-                    );
-
-            InstructorDetail tempInstructorDetail =
-                    new InstructorDetail(
-                            "http://youtube.com/channel/yussinhidayat",
-                            "Coding"
-                    );
-
-            //associate the object
-            tempInstructor.setInstructorDetail(tempInstructorDetail);
-
             //start transaction
             session.beginTransaction();
 
-            //save the instructor
-            //NOTE:this will ALSO save the detail, because CasecadeType.ALl
-            System.out.println("Saving instructor:" + tempInstructor);
-            session.save(tempInstructor);
+            //get the instructor from db
+            int theCourse = 2;
+            Course tempCourse = session.get(Course.class, theCourse);
+
+            //delete the course
+            System.out.println("Delete course: " + tempCourse.getTitle());
+            session.delete(tempCourse);
 
             //commit the transaction
             session.getTransaction().commit();

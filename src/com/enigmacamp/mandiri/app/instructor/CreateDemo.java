@@ -1,4 +1,4 @@
-package com.enigmacamp.mandiri.app;
+package com.enigmacamp.mandiri.app.instructor;
 
 import com.enigmacamp.mandiri.entity.Instructor;
 import com.enigmacamp.mandiri.entity.InstructorDetail;
