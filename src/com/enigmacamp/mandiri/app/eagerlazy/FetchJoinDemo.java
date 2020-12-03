@@ -29,17 +29,17 @@ public class FetchJoinDemo {
             //get the instructor from db
             int theIdInstructor = 2;
 
-            Query<Instructor> query =
-                    session.createQuery("select i from Instructor i "
-                            + " JOIN FETCH i.courses "
-                            + " where i.id=:theIdInstructor", Instructor.class);
-
-            query.setParameter("theIdInstructor", theIdInstructor);
-
-            Instructor tempInstructor = query.getSingleResult();
-
-            System.out.println("\nInstructor: " + tempInstructor);
-            System.out.println("\nCourse: " + tempInstructor.getCourses());
+//            Query<Instructor> query =
+//                    session.createQuery("select i from Instructor i "
+//                            + " JOIN FETCH i.courses "
+//                            + " where i.id=:theIdInstructor", Instructor.class);
+//
+//            query.setParameter("theIdInstructor", theIdInstructor);
+//
+//            Instructor tempInstructor = query.getSingleResult();
+//
+//            System.out.println("\nInstructor: " + tempInstructor);
+//            System.out.println("\nCourse: " + tempInstructor.getCourses());
 
             session.getTransaction().commit();
             session.close();
