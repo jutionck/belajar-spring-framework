@@ -29,7 +29,9 @@ public class Instructor {
     private InstructorDetail instructorDetail;
 
     //Modify
-    @OneToMany(mappedBy = "instructor", cascade = {
+    //Eager vc Lazy Loading
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "instructor", cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.DETACH
     })

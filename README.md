@@ -39,3 +39,17 @@ Add column `date_of_birth` and copy this script below
 ```sql
 ALTER TABLE student ADD COLUMN date_of_birth date AFTER email
 ```
+
+#### Eager vs Lazy Loading
+1. Eager will retrieve everything<br>
+    - Eager Loading will load all dependent entities
+    - If your app, searching for something by the keyword, eager loading would still load all...Not Good!
+    - Solution: Use Lazy Loading instead of Eager Loading
+2. Lazy will retrieve on request<br>
+    - Load the main entity first
+
+#### Default Fetch Type
+1. @OneToOne -> FetchType.EAGER
+2. @OneToMany -> FetchType.LAZY
+3. @ManyToOne -> FetchType.EAGER
+4. @ManyToMany -> FetchType.LAZY
