@@ -48,8 +48,6 @@ public class InstructorDetail {
         this.hobby = hobby;
     }
 
-
-
     @Override
     public String toString() {
         return "InstructorDetail{" +

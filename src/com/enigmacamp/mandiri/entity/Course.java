@@ -1,6 +1,8 @@
 package com.enigmacamp.mandiri.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "course")
@@ -13,6 +15,11 @@ public class Course {
 
     @Column(name = "title")
     private String title;
+
+    //Add this
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
 
     @ManyToOne(cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
@@ -50,11 +57,28 @@ public class Course {
         this.instructor = instructor;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
+    }
+
+    //add convenience method for bi-directional relationship
+    public void addReview(Review tempReview) {
+
+        if(reviews == null) {
+            reviews= new ArrayList<>();
+        }
+        reviews.add(tempReview);
     }
 }
