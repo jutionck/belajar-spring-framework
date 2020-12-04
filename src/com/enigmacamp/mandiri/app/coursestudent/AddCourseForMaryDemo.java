@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import java.text.ParseException;
 import java.util.Date;
 
-public class CreateCourseAndStudentsDemo {
+public class AddCourseForMaryDemo {
 
     public static void main(String[] args) {
 
