@@ -16,16 +16,26 @@ public class Course {
     @Column(name = "title")
     private String title;
 
-    //Add this
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id")
-    private List<Review> reviews;
 
     @ManyToOne(cascade = {
             CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
 
     public Course() {}
 
@@ -65,14 +75,6 @@ public class Course {
         this.reviews = reviews;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                '}';
-    }
-
     //add convenience method for bi-directional relationship
     public void addReview(Review tempReview) {
 
@@ -80,5 +82,31 @@ public class Course {
             reviews= new ArrayList<>();
         }
         reviews.add(tempReview);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    //add convenience method
+    public void addStudent(Student theStudent) {
+
+        if(students == null) {
+            students= new ArrayList<>();
+        }
+        students.add(theStudent);
+    }
+
+    //toString
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
     }
 }

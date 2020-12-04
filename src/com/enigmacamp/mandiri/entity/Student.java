@@ -4,6 +4,7 @@ import com.enigmacamp.mandiri.utils.DateUtil;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -27,6 +28,16 @@ public class Student {
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    List<Course> courses;
+
     public Student() {}
 
     public Student(String firstName, String lastName, String email, Date dateOfBirth) {
@@ -37,7 +48,6 @@ public class Student {
     }
 
     //getter setter
-
     public int getId() {
         return id;
     }
@@ -78,9 +88,15 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
     //generate toString()
-
     @Override
     public String toString() {
         return "Student{" +
