@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
         <!-- Define your bean here -->
-        <bean id="myCoach" class="com.enigmacamp.mandiri.BaseBallCoach"></bean>
+        <bean id="myCoach" class="com.enigmacamp.mandiri.BaseBallCoach"/>
 
 </beans>
 
