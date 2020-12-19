@@ -1,4 +1,4 @@
-## Bahan Belajar Java Spring Freamework
+## Bahan Belajar Java Spring Framework
 
 
 Repository ini berisi dasar pembelajara **Java Spring Framework** berbasis XML.
